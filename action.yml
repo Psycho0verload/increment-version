@@ -55,5 +55,5 @@ runs:
           "${{ inputs.version-type }}" \
           "${{ inputs.preversion }}" \
           "${{ inputs.preversion-start-zero }}" \
-          "${{ inputs.use-build }}"
+          "${{ inputs.use-build }}" \
           "${{ inputs.prefix }}"
