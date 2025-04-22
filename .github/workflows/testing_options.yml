@@ -15,7 +15,7 @@ on:
         type: boolean
         default: true
       preversion-start-zero:
-        description: 'Preversion start @'
+        description: 'Preversion start with 0'
         required: true
         type: boolean
         default: false
