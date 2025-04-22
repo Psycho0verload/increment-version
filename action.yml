@@ -1,0 +1,59 @@
+name: 'Semantic Version Increment'
+description: 'Increments a semantic version incl. optional build counter'
+author: 'Psycho0verload'
+
+inputs:
+  current-version:
+    description: 'Previous version (e.g. v1.0.0-alpha.1)'
+    required: true
+
+  version-type:
+    description: >
+      Type of release. Supported:
+      none, patch, minor, major, stable, alpha, beta, rc,
+      as well as combinations such as patch-alpha, minor-beta, etc.
+    required: true
+
+  preversion:
+    description: 'Whether the pre-release version should always be incremented'
+    required: false
+    default: true
+
+  preversion-start-zero:
+    description: 'Start value for pre-release versions (e.g. 1 for -alpha.1)'
+    required: false
+    default: false
+
+  use-build:
+    description: 'Whether the build counter is activated'
+    required: false
+    default: false
+
+  prefix:
+    description: 'Outputs a "v" as a prefix (not a semantic version)'
+    required: false
+    default: false
+
+outputs:
+  next-version:
+    description: 'The new version'
+    value: ${{ steps.bump-version.outputs.next-version }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Make script executable
+      shell: bash
+      run: chmod +x "$GITHUB_ACTION_PATH/increment.sh"
+
+    - name: Run increment.sh
+      id: bump-version
+      shell: bash
+      run: |
+        "$GITHUB_ACTION_PATH/increment.sh" \
+          "${{ inputs.current-version }}" \
+          "${{ inputs.version-type }}" \
+          "${{ inputs.preversion }}" \
+          "${{ inputs.preversion-start-zero }}" \
+          "${{ inputs.use-build }}"
+          "${{ inputs.prefix }}"

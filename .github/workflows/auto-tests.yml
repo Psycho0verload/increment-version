@@ -1,0 +1,19 @@
+name: "Automated tests for increment version"
+on:
+  push:
+    paths:
+      - 'increment.sh'
+      - 'tests/**'
+  pull_request:
+  workflow_dispatch:
+jobs:
+  ci-test:
+    name: "Automatic tests"
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Check out repository
+        uses: actions/checkout@v4
+      - name: 🧰 Install jq
+        run: sudo apt update && sudo apt install -y jq
+      - name: 🧪 Matrix tests
+        run: bash tests/run-tests.sh --manual

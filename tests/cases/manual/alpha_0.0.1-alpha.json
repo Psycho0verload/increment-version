@@ -1,0 +1,178 @@
+[
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": false,
+    "use_build": false,
+    "prefix": false,
+    "expected": "0.0.1-alpha.2",
+    "expect_failure": false,
+    "uid": "47d9b2f3-8a51-4118-bc25-a7c5f3d2b8a1"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": false,
+    "use_build": false,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.2",
+    "expect_failure": false,
+    "uid": "8a31f4c7-52b9-47d3-8c7a-4b2d3a8f9c15"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": false,
+    "use_build": true,
+    "prefix": false,
+    "expected": "0.0.1-alpha.2+1",
+    "expect_failure": false,
+    "uid": "91c7a43d-52b8-4113-b9d5-8f4c27a1d7b3"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": false,
+    "use_build": true,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.2+1",
+    "expect_failure": false,
+    "uid": "28f9c71d-8a43-4513-8d5c-7b91a25f4b3d"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": true,
+    "use_build": false,
+    "prefix": false,
+    "expected": "0.0.1-alpha.1",
+    "expect_failure": false,
+    "uid": "9c7a4b21-8d52-4713-a25f-3b2f8c43d7b1"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": true,
+    "use_build": false,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.1",
+    "expect_failure": false,
+    "uid": "8a5f2b71-4c3d-4518-8d2f-7c9a1f4b3d25"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": true,
+    "use_build": true,
+    "prefix": false,
+    "expected": "0.0.1-alpha.1+1",
+    "expect_failure": false,
+    "uid": "8f2b4c5d-3a71-4119-b7c8-4a9d51c7f3a2"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": true,
+    "use_build": true,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.1+1",
+    "expect_failure": false,
+    "uid": "3f91b7a4-2d8c-4719-a5c2-4b7f1c8a43d2"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": false,
+    "use_build": false,
+    "prefix": false,
+    "expected": "0.0.1-alpha.2",
+    "expect_failure": false,
+    "uid": "7c9b1a43-8d5f-4113-a5f2-3b4c27f9a2d1"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": false,
+    "use_build": false,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.2",
+    "expect_failure": false,
+    "uid": "9c27f8a5-4b3d-4711-b8a1-3c7f5d9a4b12"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": false,
+    "use_build": true,
+    "prefix": false,
+    "expected": "0.0.1-alpha.2+1",
+    "expect_failure": false,
+    "uid": "2a43b9c7-8d51-4718-a5c3-7f2d4b1f8a59"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": false,
+    "use_build": true,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.2+1",
+    "expect_failure": false,
+    "uid": "9f3a71c4-8a5d-4118-b2d1-7c4b5d9a3f82"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": true,
+    "use_build": false,
+    "prefix": false,
+    "expected": "0.0.1-alpha.1",
+    "expect_failure": false,
+    "uid": "4b2a1f8c-3d7b-4118-a5d9-3f7c9a5b2d4f"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": true,
+    "use_build": false,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.1",
+    "expect_failure": false,
+    "uid": "3c5d2a7f-8b9a-4713-a5c8-4b71f9d2a3f8"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": true,
+    "use_build": true,
+    "prefix": false,
+    "expected": "0.0.1-alpha.1+1",
+    "expect_failure": false,
+    "uid": "8f5c9a43-3a71-4711-b9c2-7d8f4b1a3c92"
+  },
+  {
+    "version": "0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": true,
+    "use_build": true,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.1+1",
+    "expect_failure": false,
+    "uid": "7b1c8a5f-3f92-4d7a-b9c4-3a7d5b2f8c19"
+  }
+]

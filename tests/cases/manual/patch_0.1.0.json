@@ -1,0 +1,178 @@
+[
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": false,
+    "preversion_start_zero": false,
+    "use_build": false,
+    "prefix": false,
+    "expected": "0.1.1",
+    "expect_failure": false,
+    "uid": "59f1c57e-2876-4c42-8d02-5f4bc3c58216"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": false,
+    "preversion_start_zero": false,
+    "use_build": false,
+    "prefix": true,
+    "expected": "v0.1.1",
+    "expect_failure": false,
+    "uid": "df7f8c5d-50ad-47e1-9530-44e5c4d3c7fa"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": false,
+    "preversion_start_zero": false,
+    "use_build": true,
+    "prefix": false,
+    "expected": "0.1.1+1",
+    "expect_failure": false,
+    "uid": "e7235d6b-2955-4f7a-9b69-d69f8126582d"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": false,
+    "preversion_start_zero": false,
+    "use_build": true,
+    "prefix": true,
+    "expected": "v0.1.1+1",
+    "expect_failure": false,
+    "uid": "b071bc67-15f4-44ed-8dd6-77f2ad2dc79f"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": false,
+    "preversion_start_zero": true,
+    "use_build": false,
+    "prefix": false,
+    "expected": "0.1.1",
+    "expect_failure": false,
+    "uid": "a9c0f1d4-6c59-47cc-a22f-34e3071c35ff"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": false,
+    "preversion_start_zero": true,
+    "use_build": false,
+    "prefix": true,
+    "expected": "v0.1.1",
+    "expect_failure": false,
+    "uid": "c67e3c42-d4b5-4c4a-8250-3b2e10a6f18a"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": false,
+    "preversion_start_zero": true,
+    "use_build": true,
+    "prefix": false,
+    "expected": "0.1.1+1",
+    "expect_failure": false,
+    "uid": "815e273a-30df-492c-9ed2-d7c78db14b48"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": false,
+    "preversion_start_zero": true,
+    "use_build": true,
+    "prefix": true,
+    "expected": "v0.1.1+1",
+    "expect_failure": false,
+    "uid": "0eb8c03f-1a18-4d0a-bb60-59f870cfd58a"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": true,
+    "preversion_start_zero": false,
+    "use_build": false,
+    "prefix": false,
+    "expected": "0.1.1",
+    "expect_failure": false,
+    "uid": "d948b198-2eaf-44b6-8a7e-2e3a80e393ba"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": true,
+    "preversion_start_zero": false,
+    "use_build": false,
+    "prefix": true,
+    "expected": "v0.1.1",
+    "expect_failure": false,
+    "uid": "f694276f-7c6c-4de3-bdbb-c7f435aad942"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": true,
+    "preversion_start_zero": false,
+    "use_build": true,
+    "prefix": false,
+    "expected": "0.1.1+1",
+    "expect_failure": false,
+    "uid": "79c7a825-7bd5-4524-b87b-8c037d729a3c"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": true,
+    "preversion_start_zero": false,
+    "use_build": true,
+    "prefix": true,
+    "expected": "v0.1.1+1",
+    "expect_failure": false,
+    "uid": "bcc9ef1a-8a5c-468e-bb69-635be404bb46"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": true,
+    "preversion_start_zero": true,
+    "use_build": false,
+    "prefix": false,
+    "expected": "0.1.1",
+    "expect_failure": false,
+    "uid": "aad0c9c6-5c57-4b1f-8c92-ff1ab64ae5c1"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": true,
+    "preversion_start_zero": true,
+    "use_build": false,
+    "prefix": true,
+    "expected": "v0.1.1",
+    "expect_failure": false,
+    "uid": "2799bacc-6b52-4507-8d02-9dcb7046cfaf"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": true,
+    "preversion_start_zero": true,
+    "use_build": true,
+    "prefix": false,
+    "expected": "0.1.1+1",
+    "expect_failure": false,
+    "uid": "d1f3a6cc-eed7-4dc2-91b8-80731ed0ea15"
+  },
+  {
+    "version": "0.1.0",
+    "type": "patch",
+    "preversion": true,
+    "preversion_start_zero": true,
+    "use_build": true,
+    "prefix": true,
+    "expected": "v0.1.1+1",
+    "expect_failure": false,
+    "uid": "f7843297-5563-481b-a10b-24f1822362c4"
+  }
+]

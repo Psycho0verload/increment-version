@@ -1,0 +1,97 @@
+name: Manual Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Select release type'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          - patch-alpha
+          - minor-alpha
+          - major-alpha
+          - patch-beta
+          - minor-beta
+          - major-beta
+          - patch-rc
+          - minor-rc
+          - major-rc
+      set_latest_tag:
+        description: 'Should this release be tagged as latest?'
+        required: true
+        type: boolean
+env:
+  CURRENT_VERSION: ${{ vars.CURRENT_VERSION }}
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+          fetch-tags: true
+
+      - name: 🧠 Show current version
+        run: |
+          echo "Aktuelle Version: $CURRENT_VERSION"
+      - name: 🧮 Calculate new version
+        id: version
+        uses: psycho0verload/increment-version@main
+        with:
+          current-version: ${{ env.CURRENT_VERSION }}
+          version-type: ${{ inputs.release_type }}
+          preversion: false
+
+      - name: "Step 03: 🎨 Generate a changelog"
+        id: git_cliff_s03
+        uses: orhun/git-cliff-action@v4.4.2
+        with:
+          config: cliff.toml
+          args: --tag ${{ steps.version.outputs.next-version }}
+        env:
+          OUTPUT: CHANGELOG.md
+
+      - name: 🔖 Create and push Git tag
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git tag -f ${{ steps.version.outputs.next-version }}
+          git push origin -f ${{ steps.version.outputs.next-version }}
+
+      - name: 🔖 Set movable tags `vX` and `vX.Y
+        if: inputs.set_latest_tag == 'true'
+        run: |
+          version="${{ steps.version.outputs.next-version }}"
+          version_no_v="${version#v}"
+          major=$(echo "$version_no_v" | cut -d. -f1)
+          minor=$(echo "$version_no_v" | cut -d. -f2)
+
+          echo "Set tags v$major and v$major.$minor to $version"
+
+          git tag -f "v$major" "$version"
+          git tag -f "v$major.$minor" "$version"
+
+          git push origin -f "v$major"
+          git push origin -f "v$major.$minor"
+
+      - name: 🚀 Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.next-version }}
+          name: Release ${{ steps.version.outputs.next-version }}
+          body_path: CHANGELOG.md
+      - name: Set variable
+        uses: openfoxes/set-github-variable@v1.4.0
+        id: bump_version_variable_s01
+        with:
+          name: 'CURRENT_VERSION'
+          value: ${{ steps.version.outputs.next-version }}
+          token: ${{ secrets.GH_PAT }}

@@ -1,0 +1,178 @@
+[
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": false,
+    "use_build": false,
+    "prefix": false,
+    "expected": "0.0.1-alpha.2",
+    "expect_failure": false,
+    "uid": "abc12345-6789-4def-9012-3456789abcde"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": false,
+    "use_build": false,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.2",
+    "expect_failure": false,
+    "uid": "def45678-9012-4abc-3456-789def012345"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": false,
+    "use_build": true,
+    "prefix": false,
+    "expected": "0.0.1-alpha.2+1",
+    "expect_failure": false,
+    "uid": "ghi78901-2345-4def-6789-012345abc678"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": false,
+    "use_build": true,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.2+1",
+    "expect_failure": false,
+    "uid": "jkl01234-5678-4ghi-9012-345def678abc"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": true,
+    "use_build": false,
+    "prefix": false,
+    "expected": "0.0.1-alpha.1",
+    "expect_failure": false,
+    "uid": "mno56789-0123-4def-4567-890123abc456"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": true,
+    "use_build": false,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.1",
+    "expect_failure": false,
+    "uid": "pqr89012-3456-4jkl-7890-123456ghi789"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": true,
+    "use_build": true,
+    "prefix": false,
+    "expected": "0.0.1-alpha.1+1",
+    "expect_failure": false,
+    "uid": "stu12345-6789-4mno-0123-456789def012"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": false,
+    "preversion_start_zero": true,
+    "use_build": true,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.1+1",
+    "expect_failure": false,
+    "uid": "vwx45678-9012-4pqr-3456-789abc012345"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": false,
+    "use_build": false,
+    "prefix": false,
+    "expected": "0.0.1-alpha.2",
+    "expect_failure": false,
+    "uid": "yz123456-7890-4stu-1234-567890defghi"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": false,
+    "use_build": false,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.2",
+    "expect_failure": false,
+    "uid": "abc89012-3456-4vwx-7890-123456ghi123"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": false,
+    "use_build": true,
+    "prefix": false,
+    "expected": "0.0.1-alpha.2+1",
+    "expect_failure": false,
+    "uid": "def12345-6789-4yz1-2345-678901ghi890"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": false,
+    "use_build": true,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.2+1",
+    "expect_failure": false,
+    "uid": "ghi45678-9012-4abc-3456-789012def123"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": true,
+    "use_build": false,
+    "prefix": false,
+    "expected": "0.0.1-alpha.1",
+    "expect_failure": false,
+    "uid": "jkl89012-3456-4def-7890-123456ghi890"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": true,
+    "use_build": false,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.1",
+    "expect_failure": false,
+    "uid": "mno12345-6789-4abc-0123-456789defghi"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": true,
+    "use_build": true,
+    "prefix": false,
+    "expected": "0.0.1-alpha.1+1",
+    "expect_failure": false,
+    "uid": "pqr45678-9012-4ghi-3456-789def123456"
+  },
+  {
+    "version": "v0.0.1-alpha",
+    "type": "alpha",
+    "preversion": true,
+    "preversion_start_zero": true,
+    "use_build": true,
+    "prefix": true,
+    "expected": "v0.0.1-alpha.1+1",
+    "expect_failure": false,
+    "uid": "stu67890-1234-4def-5678-901234ghi123"
+  }
+]

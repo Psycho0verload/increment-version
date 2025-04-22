@@ -1,0 +1,146 @@
+name: "Testmatrix with Options"
+run-name: "Testmatrix with current-version: ${{ inputs.version }} preversion: ${{ inputs.preversion }} preversion-start: ${{ inputs.preversion-start }} use-build: ${{ inputs.use-build }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Enter version for testing (e.g. 1.0.0 or 1.0.0-rc)'
+        required: true
+        type: string
+        default: "1.0.0"
+      preversion:
+        description: 'Preversion?'
+        required: true
+        type: boolean
+        default: true
+      preversion-start:
+        description: 'Preversion start @'
+        required: true
+        type: number
+        default: "0"
+      use-build:
+        description: 'Use Build?'
+        required: true
+        type: boolean
+        default: false
+
+jobs:
+  matrix-test:
+    name: Test ${{ matrix.type }} → Version
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        type:
+          - none
+          - major
+          - minor
+          - patch
+          - feature
+          - bug
+          - hotfix
+          - stable
+          - alpha
+          - beta
+          - pre
+          - rc
+          - patch-alpha
+          - patch-beta
+          - patch-pre
+          - patch-rc
+          - minor-alpha
+          - minor-beta
+          - minor-pre
+          - minor-rc
+          - major-alpha
+          - major-beta
+          - major-pre
+          - major-rc
+          # Fehlerhafte Inputs
+          - ""
+          - invalid
+          - patch-invalid
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run version bump with ${{ matrix.type }}
+        id: bump
+        continue-on-error: true
+        uses: psycho0verload/increment-version@main
+        with:
+          current-version: ${{ inputs.version }}
+          version-type: ${{ matrix.type }}
+          preversion: ${{ inputs.preversion }}
+          preversion-start: ${{ inputs.preversion-start }}
+          use-build: ${{ inputs.use-build }}
+
+      - name: Save result to file
+        run: |
+          mkdir -p result
+          if [ -z "${{ steps.bump.outputs.next-version }}" ]; then
+            echo "❌ Error during processing:"
+            echo "Input version: ${{ inputs.version }}" > result/result-${{ matrix.type }}.txt
+            echo "Type: ${{ matrix.type }}" >> result/result-${{ matrix.type }}.txt
+            echo "Result: ERROR (no output of next-version)" >> result/result-${{ matrix.type }}.txt
+          else
+            echo "✅ Successfully processed:" > result/result-${{ matrix.type }}.txt
+            echo "Input version: ${{ inputs.version }}" >> result/result-${{ matrix.type }}.txt
+            echo "Type: ${{ matrix.type }}" >> result/result-${{ matrix.type }}.txt
+            echo "Result: ${{ steps.bump.outputs.next-version }}" >> result/result-${{ matrix.type }}.txt
+          fi
+
+      - name: Upload result artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: matrix-result-${{ matrix.type }}
+          path: result/result-${{ matrix.type }}.txt
+
+  summary:
+    name: Summary of all version tests
+    runs-on: ubuntu-latest
+    needs: matrix-test
+    if: always()
+    steps:
+      - name: Download all result artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: results
+
+      - name: Formatted summary in logs
+        run: |
+          echo "### 🧪 Summary of all version tests:"
+          echo ""
+
+          find results -name 'result-*.txt' | while read file; do
+            input=$(grep '^Input version:' "$file" | cut -d: -f2- | xargs)
+            type=$(grep '^Type:' "$file" | cut -d: -f2- | xargs)
+            result=$(grep '^Result:' "$file" | cut -d: -f2- | xargs)
+
+            if [[ "$result" == ERROR* ]]; then
+              echo "❌ $input → $type → $result"
+            else
+              echo "✅ $input → $type → $result"
+            fi
+          done
+
+      - name: Schreibe strukturierte Zusammenfassung in GitHub Summary
+        run: |
+          echo "### 🧪 Summary of all version tests" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Status | Input | Type | Result |" >> $GITHUB_STEP_SUMMARY
+          echo "|--------|--------|------|--------|" >> $GITHUB_STEP_SUMMARY
+
+          find results -name 'result-*.txt' | while read file; do
+            input=$(grep '^Input version:' "$file" | cut -d: -f2- | xargs)
+            type=$(grep '^Type:' "$file" | cut -d: -f2- | xargs)
+            result=$(grep '^Result:' "$file" | cut -d: -f2- | xargs)
+
+            if [[ "$result" == ERROR* ]]; then
+              echo "| ❌ | \`$input\` | \`$type\` | $result |" >> $GITHUB_STEP_SUMMARY
+            else
+              echo "| ✅ | \`$input\` | \`$type\` | \`$result\` |" >> $GITHUB_STEP_SUMMARY
+            fi
+          done
