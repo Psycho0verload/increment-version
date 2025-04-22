@@ -1,4 +1,4 @@
-name: "Testmatrix: Default"
+name: "Testmatrix: Default with Build"
 run-name: "Testmatrix: Default with ${{ inputs.version }}"
 on:
   workflow_dispatch:
