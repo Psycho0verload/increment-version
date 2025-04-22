@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
+echo "Shell options:"
+shopt -p
+set -o
 
 if ! command -v jq &> /dev/null; then
   echo "❌ 'jq' is not installed. Please install it before running the script."
