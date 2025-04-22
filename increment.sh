@@ -85,7 +85,7 @@ main() {
       [[ "$prefix" == "true" ]] && next_version="v${next_version}"
       echo "create build-only version: $prev_version -> $next_version"
       echo "next-version=$next_version" >> "$GITHUB_OUTPUT"
-      return
+      exit 0
     else
       echo "No changes made – neither release nor build." >&2
       exit 1
