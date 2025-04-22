@@ -13,7 +13,15 @@ jobs:
     steps:
       - name: 📥 Check out repository
         uses: actions/checkout@v4
-      - name: 🧰 Install jq
-        run: sudo apt update && sudo apt install -y jq
+      - name: 🧰 Check and Install jq
+        run: |
+          if command -v jq >/dev/null 2>&1; then
+            echo "✅ jq ist bereits installiert."
+            jq --version
+          else
+            echo "⚠️ jq ist nicht installiert. Installation wird durchgeführt..."
+            sudo apt update && sudo apt install -y jq
+            jq --version
+          fi
       - name: 🧪 Matrix tests
         run: bash tests/run-tests.sh --manual
