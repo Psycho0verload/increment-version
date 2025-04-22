@@ -24,6 +24,11 @@ on:
         required: true
         type: boolean
         default: false
+      prefix:
+        description: 'Prefix?'
+        required: true
+        type: boolean
+        default: false
 
 jobs:
   matrix-test:
