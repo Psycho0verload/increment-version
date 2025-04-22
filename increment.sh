@@ -172,8 +172,13 @@ main() {
 
   [[ "$prefix" == "true" ]] && next_version="v${next_version}"
 
-  echo "create $release_type-release version: $prev_version -> $next_version"
-  echo "next-version=$next_version" >> "$GITHUB_OUTPUT"
+  #echo "create $release_type-release version: $prev_version -> $next_version"
+  #echo "next-version=$next_version" >> "$GITHUB_OUTPUT"
+  if [ -n "${GITHUB_OUTPUT:-}" ]; then
+    echo "next-version=$next_version" >> "$GITHUB_OUTPUT"
+  else
+    echo "$next_version"
+  fi
 }
 
 main "$@"
