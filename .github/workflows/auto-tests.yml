@@ -2,6 +2,7 @@ name: "Automated tests for increment version"
 on:
   push:
     paths:
+      - '.github/workflows/auto-tests.yml'
       - 'increment.sh'
       - 'tests/**'
   pull_request:
