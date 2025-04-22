@@ -56,7 +56,7 @@ jobs:
         with:
           current-version: ${{ inputs.version }}
           version-type: ${{ matrix.type }}
-          build: true
+          use-build: true
 
       - name: Save result to file
         run: |
