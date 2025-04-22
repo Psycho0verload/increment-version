@@ -74,7 +74,7 @@ jobs:
           current-version: ${{ inputs.version }}
           version-type: ${{ matrix.type }}
           preversion: ${{ inputs.preversion }}
-          preversion-start: ${{ inputs.preversion-start }}
+          preversion-start-zero: ${{ inputs.preversion-start-zero }}
           use-build: ${{ inputs.use-build }}
 
       - name: Save result to file
