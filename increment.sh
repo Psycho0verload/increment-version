@@ -177,3 +177,4 @@ main() {
 }
 
 main "$@"
+exit 0
