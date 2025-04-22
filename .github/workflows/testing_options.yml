@@ -14,11 +14,11 @@ on:
         required: true
         type: boolean
         default: true
-      preversion-start:
-        description: 'Preversion start @'
+      preversion-start-zero:
+        description: 'Preversion start with 0'
         required: true
-        type: number
-        default: "0"
+        type: boolean
+        default: false
       use-build:
         description: 'Use Build?'
         required: true
