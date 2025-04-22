@@ -27,5 +27,6 @@ jobs:
           wget https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-linux64 -O /usr/local/bin/jq
           chmod +x /usr/local/bin/jq
           jq --version
+          /usr/local/bin/jq --version
       - name: 🧪 Matrix tests
         run: bash tests/run-tests.sh --manual
