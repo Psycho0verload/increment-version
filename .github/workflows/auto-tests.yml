@@ -30,4 +30,7 @@ jobs:
           /usr/local/bin/jq --version
           which jq
       - name: 🧪 Matrix tests
-        run: bash tests/run-tests.sh --manual
+        run: |
+          which jq
+          jq --version
+          bash tests/run-tests.sh --manual
