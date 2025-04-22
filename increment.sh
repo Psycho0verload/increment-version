@@ -1,5 +1,5 @@
 #!/bin/bash -l
-set -euo pipefail
+set -uo pipefail
 
 load_and_increment_build_number() {
   local file=".build-version"
