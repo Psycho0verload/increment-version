@@ -113,6 +113,7 @@ for MATRIX_FILE in "$TEST_FILES_DIR"/*.json; do
   done < <(jq -c '.[]' "$MATRIX_FILE")
 done
 
+echo "Running on bash version: $BASH_VERSION"
 echo -e "\n📊 Test report:"
 echo " - Total tests: $total"
 echo " - OK: $((passed))"
