@@ -1,6 +1,9 @@
 name: 'Semantic Version Increment'
 description: 'Increments a semantic version incl. optional build counter'
 author: 'Psycho0verload'
+branding:
+  icon: 'trending-up'
+  color: 'blue'
 
 inputs:
   current-version:
@@ -45,7 +48,6 @@ runs:
     - name: Make script executable
       shell: bash
       run: chmod +x "$GITHUB_ACTION_PATH/increment.sh"
-
     - name: Run increment.sh
       id: bump-version
       shell: bash
