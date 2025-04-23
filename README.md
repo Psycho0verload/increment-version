@@ -68,7 +68,7 @@ The generated version in SemVer format, depending on the provided parameters:
 
 ## Usage Examples
 
-### Basic Version Bumps
+### Basic Exampple
 
 ```yaml
 - uses: psycho0verload/increment-version@latest
@@ -77,3 +77,25 @@ The generated version in SemVer format, depending on the provided parameters:
     version-type: 'major'
 ```
 The Basic example is the simplest form of usage. The expected result is: `2.0.0`.
+
+### Full Exampple
+
+```yaml
+- uses: psycho0verload/increment-version@latest
+  with:
+    current-version: 'v1.0.0-rc.5+123'
+    version-type: 'major'
+    preversion: false
+    preversion-start-zero: true
+    use-build: true
+    prefix: false
+```
+The expected result is: `1.0.1-alpha+124`.
+
+## Expected behavior
+To provide an insight into the behavior and a view of the expected results, here are a few cases with their results:
+- [Increase `1.0.0` through `patch` and all possible combinations of options](docu/expected_behavior_1.0.0_patch.md)
+- [Increase `v1.0.0` through `patch` and all possible combinations of options](docu/expected_behavior_v1.0.0_patch.md)
+- [Increase `v1.0.0+123` through `patch-alpha` and all possible combinations of options](docu/expected_behavior_v1.0.0+123_patch-alpha.md)
+- [Increase `v1.0.0-rc.5+123` through `patch-alpha` and all possible combinations of options](docu/expected_behavior_v1.0.0-rc.5+123_patch-alpha.md)
+- [Increase `v1.0.0-rc.5+123` through `rc` and all possible combinations of options](docu/expected_behavior_v1.0.0-rc.5+123_rc.md)
