@@ -1,5 +1,6 @@
-name: "Bool-Matrix Version Test for README"
+name: "Bool-Matrix Version Test"
 run-name: "BoolMatrix | current: ${{ inputs.current-version }} | type: ${{ inputs.version-type }}"
+
 on:
   workflow_dispatch:
     inputs:
@@ -44,7 +45,7 @@ jobs:
       - name: Save Result to File
         run: |
           mkdir -p results
-          FILE="results/result-${{ matrix.preversion }}-${{ matrix.preversion-start-zero }}-${{ matrix.use-build }}-${{ matrix.prefix }}.txt"
+          FILE="results/result-pre${{ matrix.preversion }}-zero${{ matrix.preversion-start-zero }}-build${{ matrix.use-build }}-prefix${{ matrix.prefix }}.txt"
 
           echo "current-version: ${{ inputs.current-version }}" >> $FILE
           echo "version-type: ${{ inputs.version-type }}" >> $FILE
@@ -52,6 +53,7 @@ jobs:
           echo "preversion-start-zero: ${{ matrix.preversion-start-zero }}" >> $FILE
           echo "use-build: ${{ matrix.use-build }}" >> $FILE
           echo "prefix: ${{ matrix.prefix }}" >> $FILE
+
           if [ -z "${{ steps.bump.outputs.next-version }}" ]; then
             echo "result: ERROR (no output)" >> $FILE
             echo "status: ❌" >> $FILE
@@ -63,7 +65,7 @@ jobs:
       - name: Upload Result Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: bool-matrix-results
+          name: bool-result-pre${{ matrix.preversion }}-zero${{ matrix.preversion-start-zero }}-build${{ matrix.use-build }}-prefix${{ matrix.prefix }}
           path: results
 
   summary:
@@ -75,7 +77,6 @@ jobs:
       - name: Lade Resultate
         uses: actions/download-artifact@v4
         with:
-          name: bool-matrix-results
           path: results
 
       - name: Ausgabe Tabelle
@@ -85,7 +86,7 @@ jobs:
           echo "| current-version | version-type | preversion | preversion-start-zero | use-build | prefix | Result | Status |" >> $GITHUB_STEP_SUMMARY
           echo "|-----------------|--------------|------------|------------------------|-----------|--------|--------|--------|" >> $GITHUB_STEP_SUMMARY
 
-          for f in results/*.txt; do
+          for f in results/**/*.txt; do
             current=$(grep '^current-version:' "$f" | cut -d: -f2- | xargs)
             type=$(grep '^version-type:' "$f" | cut -d: -f2- | xargs)
             pre=$(grep '^preversion:' "$f" | cut -d: -f2- | xargs)
