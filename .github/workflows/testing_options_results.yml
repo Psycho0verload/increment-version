@@ -81,6 +81,7 @@ jobs:
           preversion: ${{ inputs.preversion }}
           preversion-start-zero: ${{ inputs.preversion-start-zero }}
           use-build: ${{ inputs.use-build }}
+          prefix: ${{ inputs.prefix }}
 
       - name: Save result to file
         run: |
