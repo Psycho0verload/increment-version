@@ -1,0 +1,99 @@
+name: "Bool-Matrix Version Test for README"
+run-name: "BoolMatrix | current: ${{ inputs.current-version }} | type: ${{ inputs.version-type }}"
+on:
+  workflow_dispatch:
+    inputs:
+      current-version:
+        description: 'Current Version (z. B. 1.2.3)'
+        required: true
+        type: string
+        default: '1.0.0'
+      version-type:
+        description: 'Version Type (z. B. patch, minor, beta, ...)'
+        required: true
+        type: string
+        default: 'patch'
+
+jobs:
+  matrix-test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        preversion: [true, false]
+        preversion-start-zero: [true, false]
+        use-build: [true, false]
+        prefix: [true, false]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run Version Bump
+        id: bump
+        continue-on-error: true
+        uses: psycho0verload/increment-version@main
+        with:
+          current-version: ${{ inputs.current-version }}
+          version-type: ${{ inputs.version-type }}
+          preversion: ${{ matrix.preversion }}
+          preversion-start-zero: ${{ matrix.preversion-start-zero }}
+          use-build: ${{ matrix.use-build }}
+          prefix: ${{ matrix.prefix }}
+
+      - name: Save Result to File
+        run: |
+          mkdir -p results
+          FILE="results/result-${{ matrix.preversion }}-${{ matrix.preversion-start-zero }}-${{ matrix.use-build }}-${{ matrix.prefix }}.txt"
+
+          echo "current-version: ${{ inputs.current-version }}" >> $FILE
+          echo "version-type: ${{ inputs.version-type }}" >> $FILE
+          echo "preversion: ${{ matrix.preversion }}" >> $FILE
+          echo "preversion-start-zero: ${{ matrix.preversion-start-zero }}" >> $FILE
+          echo "use-build: ${{ matrix.use-build }}" >> $FILE
+          echo "prefix: ${{ matrix.prefix }}" >> $FILE
+          if [ -z "${{ steps.bump.outputs.next-version }}" ]; then
+            echo "result: ERROR (no output)" >> $FILE
+            echo "status: ❌" >> $FILE
+          else
+            echo "result: ${{ steps.bump.outputs.next-version }}" >> $FILE
+            echo "status: ✅" >> $FILE
+          fi
+
+      - name: Upload Result Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bool-matrix-results
+          path: results
+
+  summary:
+    name: Zusammenfassung
+    runs-on: ubuntu-latest
+    needs: matrix-test
+    if: always()
+    steps:
+      - name: Lade Resultate
+        uses: actions/download-artifact@v4
+        with:
+          name: bool-matrix-results
+          path: results
+
+      - name: Ausgabe Tabelle
+        run: |
+          echo "### 🧪 Bool-Matrix Test Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| current-version | version-type | preversion | preversion-start-zero | use-build | prefix | Result | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------------|--------------|------------|------------------------|-----------|--------|--------|--------|" >> $GITHUB_STEP_SUMMARY
+
+          for f in results/*.txt; do
+            current=$(grep '^current-version:' "$f" | cut -d: -f2- | xargs)
+            type=$(grep '^version-type:' "$f" | cut -d: -f2- | xargs)
+            pre=$(grep '^preversion:' "$f" | cut -d: -f2- | xargs)
+            zero=$(grep '^preversion-start-zero:' "$f" | cut -d: -f2- | xargs)
+            build=$(grep '^use-build:' "$f" | cut -d: -f2- | xargs)
+            prefix=$(grep '^prefix:' "$f" | cut -d: -f2- | xargs)
+            result=$(grep '^result:' "$f" | cut -d: -f2- | xargs)
+            status=$(grep '^status:' "$f" | cut -d: -f2- | xargs)
+
+            echo "| \`$current\` | \`$type\` | \`$pre\` | \`$zero\` | \`$build\` | \`$prefix\` | \`$result\` | $status |" >> $GITHUB_STEP_SUMMARY
+          done
