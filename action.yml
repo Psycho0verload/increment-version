@@ -45,17 +45,8 @@ outputs:
 runs:
   using: "composite"
   steps:
-    - name: Make script executable
-      shell: bash
-      run: chmod +x "$GITHUB_ACTION_PATH/increment.sh"
     - name: Run increment.sh
       id: bump-version
       shell: bash
       run: |
-        "$GITHUB_ACTION_PATH/increment.sh" \
-          "${{ inputs.current-version }}" \
-          "${{ inputs.version-type }}" \
-          "${{ inputs.preversion }}" \
-          "${{ inputs.preversion-start-zero }}" \
-          "${{ inputs.use-build }}" \
-          "${{ inputs.prefix }}"
+        "$GITHUB_ACTION_PATH"/increment.sh "${{ inputs.current-version }}" "${{ inputs.version-type }}" "${{ inputs.preversion }}" "${{ inputs.preversion-start-zero }}" "${{ inputs.use-build }}" "${{ inputs.prefix }}"
